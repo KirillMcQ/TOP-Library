@@ -1,5 +1,6 @@
 let myLibrary = [];
 let bookGrid = document.querySelector(".booksGrid");
+let indexCount = 0;
 
 function Book(title, author, pagesRead, didRead) {
   // the constructor...
@@ -11,6 +12,8 @@ function Book(title, author, pagesRead, didRead) {
 
 function addBookToLibrary(obj) {
   // do stuff here
+  obj.arrayIndex = indexCount;
+  indexCount++;
   myLibrary.push(obj);
 }
 
@@ -19,6 +22,8 @@ function displayBook(book) {
     console.log(book);
     let wrapperDiv = document.createElement('div');
     wrapperDiv.classList.add('bookCard');
+    wrapperDiv.setAttribute("data-arrayIndex", book.arrayIndex);
+    console.log(wrapperDiv.getAttribute("data-arrayIndex")); 
         
     let titleAuthorDiv = document.createElement('div');
     titleAuthorDiv.classList.add('titleAuthor');
@@ -32,6 +37,17 @@ function displayBook(book) {
     titleAuthorDiv.appendChild(bookAuthor);
 
     wrapperDiv.appendChild(titleAuthorDiv);
+
+    let deleteButton = document.createElement('button');
+    deleteButton.innerText = "Delete this entry";
+    deleteButton.classList.add("deleteButton");
+
+    deleteButton.addEventListener("click", () => {
+        console.log(`Delete element ${book.arrayIndex}`);
+        wrapperDiv.style.display = "none";
+        myLibrary.pop(book.arrayIndex);
+    });
+    wrapperDiv.appendChild(deleteButton);
 
     let pagesReadDidRead = document.createElement('div');
     pagesReadDidRead.classList.add('pagesReadDidRead');
