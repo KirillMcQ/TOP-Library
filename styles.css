@@ -182,6 +182,19 @@ label {
     font-size: 15px;
 }
 
+.toggleReadBtn {
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+}
+
+.toggleReadBtn:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
 .deleteButton:hover {
     opacity: 0.9;
     cursor: pointer;

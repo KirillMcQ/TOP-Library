@@ -49,12 +49,24 @@ function displayBook(book) {
     });
     wrapperDiv.appendChild(deleteButton);
 
+    let toggleReadBtn = document.createElement('button');
+    toggleReadBtn.innerText = "Toggle Read";
+    toggleReadBtn.classList.add("toggleReadBtn");
+    toggleReadBtn.style.backgroundColor = book.didRead ? "red" : "green";
+    wrapperDiv.appendChild(toggleReadBtn);
+
     let pagesReadDidRead = document.createElement('div');
     pagesReadDidRead.classList.add('pagesReadDidRead');
 
     let didRead = document.createElement('h3');
-    didRead.innerText = book.didRead ? `Read` : `Not Read`;
+    didRead.innerText = book.didRead ? "Read" : "Not Read";
     pagesReadDidRead.appendChild(didRead);
+
+    toggleReadBtn.addEventListener("click", () => {
+        console.log(`Toggle read on element ${book.arrayIndex}`);
+        didRead.innerText = didRead.innerText==="Read" ? "Not read" : "Read";
+        toggleReadBtn.style.backgroundColor = toggleReadBtn.style.backgroundColor==="red" ? "green" : "red";
+    });
 
     let pagesRead = document.createElement('h3');
     pagesRead.innerText = `Pages read: ${book.pagesRead}`;
